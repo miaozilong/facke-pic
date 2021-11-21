@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.js"></script>
+<body>
+<canvas id="cvs" width="3272" height="1018" style="border:1px solid #ccc;margin:20px auto;display: block;">
+    当前浏览器不支持canvas
+    <!-- 如果浏览器支持canvas，则canvas标签里的内容不会显示出来 -->
+</canvas>
+<div></div>
+<button>+++++++++</button>
+</body>
+<script>
+    // 定义日期
+    let drawTime = moment()
+    //获取canvas元素
+    var cvs = document.getElementById("cvs");
+
+    function auto() {
+        //创建image对象
+        var imgObj = new Image();
+        imgObj.src = "./fake.png";
+        //待图片加载完后，将其显示在canvas上
+        imgObj.onload = function () {
+            var ctx = cvs.getContext('2d');
+            ctx.drawImage(this, 0, 0);//this即是imgObj,保持图片的原始大小：470*480
+            //ctx.drawImage(this, 0, 0,1024,768);//改变图片的大小到1024*768
+            let monthAndDay = drawTime.format('MM-DD ')
+            let fileName = drawTime.format('YYYY-MM-DD')
+            // 写字
+            ctx.font = '70px bold 宋体';
+            //字体颜色
+            ctx.fillStyle = '#383f4f';
+            // 第1处文字
+            let text = monthAndDay + '06:51:23';
+            let y = 400;
+            ctx.fillText(text, 90, y);
+            // 第2处文字
+            text = monthAndDay + '06:51:43';
+            ctx.fillText(text, 740, y);
+            // 第3处文字
+            text = monthAndDay + '06:52:03';
+            ctx.fillText(text, 740 + 650, y);
+            // 第4处文字
+            text = monthAndDay + '06:52:23';
+            ctx.fillText(text, 740 + 650 + 650, y);
+            // 第5处文字
+            ctx.font = '24px bold 宋体';
+            //字体颜色
+            ctx.fillStyle = '#929292';
+            text = drawTime.format('YYYY.MM.DD ') + '06:52:43';
+            ctx.fillText(text, 2890, y + 56);
+            // 保存
+            exportCanvasAsPNG('cvs', fileName)
+
+            function exportCanvasAsPNG(id, fileName) {
+
+                var canvasElement = document.getElementById(id);
+
+                var MIME_TYPE = "image/png";
+
+                var imgURL = canvasElement.toDataURL(MIME_TYPE);
+
+                var dlLink = document.createElement('a');
+                dlLink.download = fileName;
+                dlLink.href = imgURL;
+                dlLink.dataset.downloadurl = [MIME_TYPE, dlLink.download, dlLink.href].join(':');
+
+                document.body.appendChild(dlLink);
+                dlLink.click();
+                document.body.removeChild(dlLink);
+            }
+
+            // 清除文字
+            ctx.clearRect(0, 0, 3272, 1018)
+
+        }
+        // 日期+1
+        drawTime = drawTime.add(1, 'day')
+    }
+
+    setInterval(auto, 2000)
+</script>
+</html>

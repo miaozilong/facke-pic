@@ -35,23 +35,23 @@
             //字体颜色
             ctx.fillStyle = '#383f4f';
             // 第1处文字
-            let text = monthAndDay + '06:51:23';
+            let text = monthAndDay + '00:01:23';
             let y = 400;
             ctx.fillText(text, 90, y);
             // 第2处文字
-            text = monthAndDay + '06:51:43';
+            text = monthAndDay + '00:01:43';
             ctx.fillText(text, 740, y);
             // 第3处文字
-            text = monthAndDay + '06:52:03';
+            text = monthAndDay + '00:02:03';
             ctx.fillText(text, 740 + 650, y);
             // 第4处文字
-            text = monthAndDay + '06:52:23';
+            text = monthAndDay + '00:02:23';
             ctx.fillText(text, 740 + 650 + 650, y);
             // 第5处文字
             ctx.font = '24px bold 宋体';
             //字体颜色
             ctx.fillStyle = '#929292';
-            text = drawTime.format('YYYY.MM.DD ') + '06:52:43';
+            text = drawTime.format('YYYY.MM.DD ') + '00:02:43';
             ctx.fillText(text, 2890, y + 56);
             // 保存
             exportCanvasAsPNG('cvs', fileName)

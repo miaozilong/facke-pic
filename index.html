@@ -6,7 +6,7 @@
 </head>
 <script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.js"></script>
 <body>
-<canvas id="cvs" width="3272" height="1018" style="border:1px solid #ccc;margin:20px auto;display: block;">
+<canvas id="cvs" width="4572" height="1018" style="border:1px solid #ccc;margin:20px auto;display: block;">
     当前浏览器不支持canvas
     <!-- 如果浏览器支持canvas，则canvas标签里的内容不会显示出来 -->
 </canvas>
@@ -37,22 +37,28 @@
             // 第1处文字
             let text = monthAndDay + '00:01:23';
             let y = 400;
-            ctx.fillText(text, 90, y);
+            ctx.fillText(text, 125, y);
             // 第2处文字
             text = monthAndDay + '00:01:43';
-            ctx.fillText(text, 740, y);
+            ctx.fillText(text, 775, y);
             // 第3处文字
             text = monthAndDay + '00:02:03';
-            ctx.fillText(text, 740 + 650, y);
+            ctx.fillText(text, 775 + 650, y);
             // 第4处文字
             text = monthAndDay + '00:02:23';
-            ctx.fillText(text, 740 + 650 + 650, y);
+            ctx.fillText(text, 775 + 650 + 650, y);
             // 第5处文字
+            text = monthAndDay + '00:02:33';
+            ctx.fillText(text, 775 + 650 + 650 + 650, y);
+            // 第6处文字
             ctx.font = '24px bold 宋体';
             //字体颜色
             ctx.fillStyle = '#929292';
             text = drawTime.format('YYYY.MM.DD ') + '00:02:43';
-            ctx.fillText(text, 2890, y + 56);
+            ctx.fillText(text, 3551 - 21, y + 56 - 3);
+            // 第7处文字
+            text = drawTime.format('YYYY.MM.DD ') + '00:02:59';
+            ctx.fillText(text, 4209 - 21, y + 56 - 3);
             // 保存
             exportCanvasAsPNG('cvs', fileName)
 
@@ -75,7 +81,7 @@
             }
 
             // 清除文字
-            ctx.clearRect(0, 0, 3272, 1018)
+            ctx.clearRect(0, 0, 4572, 1018)
 
         }
         // 日期+1
